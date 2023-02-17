@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";  
+import ReactDOM from "react-dom";
+import Noty from 'noty';  
+import "../node_modules/noty/lib/noty.css";  
+import "../node_modules/noty/lib/themes/bootstrap-v4.css";  
 
-function App() {
+import "./index.css";
+
+export default function App() {  
+  ["alert", "error", "info", "information", "success", "warning"].forEach(
+    (type, i) =>
+      setTimeout(function() {
+        new Noty({
+          text: "This is a " + type + " notification!",
+          layout: "bottom",
+          theme: "bootstrap-v4",
+          type: type
+        }).show();
+      }, 500 * i)
+  );
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Meaow Meaow</h1>
+      <h2>Let's show some beautiful notifications!</h2>
     </div>
   );
 }
 
-export default App;
+const rootElement = document.getElementById("root");  
+ReactDOM.render(<App />, rootElement);  
